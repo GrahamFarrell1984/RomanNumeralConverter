@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 /**
  *
  * @author grahamfarrell
+ * @author dominicdillon
  */
 @Path("/romanNumeralConverter")
 public class RomanNumeralConverter {
@@ -31,6 +32,20 @@ public class RomanNumeralConverter {
             }
         }
         return Response.status(200).entity(romanNumeralValue).build();
+    }
+  
+    @GET
+    @Path("/romanToDecimal/{romanNumeralValue}")
+    public Response convertRomanToDecimal(@PathParam("romanNumeralValue") String romanNumeralValue) {
+        romanNumeralValue = romanNumeralValue.toUpperCase();
+        int decimalNumberValue = 0;
+        for (int i = 0; i < ROMAN_NUMERAL_LETTERS.length; i++) {
+            while (romanNumeralValue.startsWith(ROMAN_NUMERAL_LETTERS[i])) {
+                decimalNumberValue = decimalNumberValue + DECIMAL_NUMBER_VALUES[i];
+                romanNumeralValue = romanNumeralValue.replaceFirst(ROMAN_NUMERAL_LETTERS[i], "");
+            }
+        }
+        return Response.status(200).entity(decimalNumberValue).build();
     }
 
 }
