@@ -41,4 +41,29 @@ public class RomanNumeralConverterTest {
         
     }
     
+    @Test
+    public void testConvertRomanToDecimalMethod() {
+        
+        RomanNumeralConverter romanNumeralConverterTest = new RomanNumeralConverter();
+        
+        String romanNumeralValue = "MMXIX";
+        Response result = romanNumeralConverterTest.convertRomanToDecimal(romanNumeralValue);
+        System.out.println(result.getEntity());
+        
+        Assert.assertEquals(2019, result.getEntity());
+        
+        romanNumeralValue = "MCMLXXXIV";
+        result = romanNumeralConverterTest.convertRomanToDecimal(romanNumeralValue);
+        System.out.println(result.getEntity());
+        
+        Assert.assertEquals(1984, result.getEntity());
+        
+        romanNumeralValue = "CDLVI";
+        result = romanNumeralConverterTest.convertRomanToDecimal(romanNumeralValue);
+        System.out.println(result.getEntity());
+        
+        Assert.assertEquals(456, result.getEntity());
+        
+    }
+    
 }
